@@ -1,5 +1,6 @@
 package com.shobhit.elasticsearch.SearchServices.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.query.GetQuery;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-
+@Transactional
 @Repository
 public class ProductDao {
 
@@ -25,21 +27,32 @@ public class ProductDao {
     @Autowired
     private ElasticsearchOperations elasticsearchOperations;
 
-    @Autowired
-    private Product product;
-
     public Product getProductById(String id) {
-        
-        product = elasticsearchOperations.queryForObject( GetQuery , Product.class);
+
+        Product product = new Product("1", "productNameFromDao", "productDescriptionFromDao", "productCount", 4.45);
         return product;
-        
-	}
 
-	public Product createProduct(Product product) {
-        
-        
-       
-	}
+    }
 
+    public Product createProduct(Product product) {
+
+        return new Product("2", "productName2", "productDescription2", "productCount2", 4.85);
+
+    }
+
+    public Product updateProductById(String id) {
+        return null;
+    }
+
+    public List<Product> getAllProducts() {
+        return null;
+    }
+
+    public void deleteAllProducts() {
+
+    }
+
+    public void deleteProductById(String id) {
+    }
 
 }
