@@ -30,8 +30,9 @@ public class ProductService {
   }
 
   public void deleteProductById(String id) {
-    productDao.getProductById(id)
-     // .map(itemToBeDeleted -> productDao.deleteProductById(itemToBeDeleted)).then(ResponseEntity.ok());
+    productDao.getProductById(id);
+    // .map(itemToBeDeleted ->
+    // productDao.deleteProductById(itemToBeDeleted)).then(ResponseEntity.ok());
   }
 
   public void deleteAllProducts() {
