@@ -1,5 +1,6 @@
 package com.shobhit.elasticsearch.SearchServices.configuration;
 
+import org.elasticsearch.common.regex.Regex;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,7 +14,11 @@ public class SpringFoxConfig {
 
   @Bean
   public Docket api() {
-    return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
+    return new Docket(DocumentationType.SWAGGER_2).select()
+        .apis(RequestHandlerSelectors.basePackage("com.shobhit.elasticsearch.SearchServices"))
+        // .apis(RequestHandlerSelectors.any()) //for enabling all endpoints
+        // including actuators, errors, operational
         .paths(PathSelectors.any()).build();
   }
+
 }
