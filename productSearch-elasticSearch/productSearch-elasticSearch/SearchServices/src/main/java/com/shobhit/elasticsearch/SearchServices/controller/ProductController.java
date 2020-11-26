@@ -68,7 +68,7 @@ public class ProductController {
 
     }
 
-    @DeleteMapping("deleteAll")
+    @DeleteMapping("/deleteAll")
     public ResponseEntity<Void> deleteAllProducts() {
 
         productService.deleteAllProducts();
