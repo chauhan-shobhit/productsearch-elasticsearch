@@ -31,46 +31,48 @@ public class ProductController {
     @Autowired
     private ProductDao productDao;
 
-    @PostMapping
+    @PostMapping(path = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        return new ResponseEntity<>(productDao.createProduct(product), HttpStatus.CREATED);
+        return new ResponseEntity<>(productService.createProduct(product), HttpStatus.CREATED);
 
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Product> getProductById(@PathVariable String id) {
 
-        return new ResponseEntity<>(productService.getProductById(id), HttpStatus.OK);
+        Product availableProduct = productService.getProductById(id);
+
+        return new ResponseEntity<>(availableProduct, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<Product>> getAllProducts() {
 
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
 
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Product> updateProductById(@PathVariable String id) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateProductById(@PathVariable String id, @RequestBody Product product) {
 
-        return new ResponseEntity<>(productService.updateProductById(id), HttpStatus.OK);
+        return new ResponseEntity<>(productService.updateProductById(id, product), HttpStatus.OK);
 
     }
 
-    @DeleteMapping("{id}")
-    public String deleteProductById(@PathVariable String id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProductById(@PathVariable String id) {
 
         productService.deleteProductById(id);
 
-        return "item deleted";
+        return ResponseEntity.ok().<Void>build();
 
     }
 
-    @DeleteMapping
-    public String deleteAllProducts() {
+    @DeleteMapping("deleteAll")
+    public ResponseEntity<Void> deleteAllProducts() {
 
         productService.deleteAllProducts();
-        return ("all items deleted");
+        return ResponseEntity.ok().<Void>build();
     }
 
 }

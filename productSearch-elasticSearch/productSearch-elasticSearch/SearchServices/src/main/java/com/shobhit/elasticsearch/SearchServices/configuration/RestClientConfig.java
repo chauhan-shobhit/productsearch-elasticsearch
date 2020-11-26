@@ -16,31 +16,23 @@ import org.slf4j.LoggerFactory;
 
 @Slf4j
 @Configuration
-public class RestClientConfig extends AbstractElasticsearchConfiguration{
+public class RestClientConfig extends AbstractElasticsearchConfiguration {
 
     @Value("${spring.elasticsearch.rest.uris}")
     private String esURI;
-    
+
     @Value("${spring.elasticsearch.rest.connection-timeout}")
     private int connectionTimeout;
 
-
     @Override
     @Bean
-    public RestHighLevelClient elasticsearchClient(){
+    public RestHighLevelClient elasticsearchClient() {
 
-        final ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-                                                            .connectedTo(esURI)
-                                                            .withConnectTimeout(connectionTimeout)
-                                                            .build();
+        final ClientConfiguration clientConfiguration = ClientConfiguration.builder().connectedTo(esURI)
+                .withConnectTimeout(connectionTimeout).build();
 
-                                                
-        return RestClients.create(clientConfiguration).rest();          
-        
-        
+        return RestClients.create(clientConfiguration).rest();
 
-    }    
+    }
 
-
-    
 }

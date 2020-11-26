@@ -8,10 +8,10 @@ public class Product {
     private String id;
     private String name;
     private String description;
-    private String quantity;
+    private int quantity;
     private double price;
 
-    public Product(String id, String name, String description, String quantity, double price) {
+    public Product(String id, String name, String description, Integer quantity, double price) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -43,11 +43,11 @@ public class Product {
         this.description = description;
     }
 
-    public String getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

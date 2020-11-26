@@ -29,14 +29,14 @@ public class ProductDao {
 
     public Product getProductById(String id) {
 
-        Product product = new Product("1", "productNameFromDao", "productDescriptionFromDao", "productCount", 4.45);
+        Product product = new Product("1", "productNameFromDao", "productDescriptionFromDao", 20, 4.45);
         return product;
 
     }
 
     public Product createProduct(Product product) {
 
-        return new Product("2", "productName2", "productDescription2", "productCount2", 4.85);
+        return new Product("2", "productName2", "productDescription2", 30, 4.85);
 
     }
 
