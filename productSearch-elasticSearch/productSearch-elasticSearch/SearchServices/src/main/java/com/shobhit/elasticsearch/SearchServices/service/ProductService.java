@@ -36,6 +36,9 @@ public class ProductService {
     if (!productRepository.findById(id).isEmpty()) {
       throw new ProductNotFoundException("Product with ID " + id + " not found");
     }
+
+    log.info("ID ", id);
+
     return productRepository.findById(id).get();
 
   }
