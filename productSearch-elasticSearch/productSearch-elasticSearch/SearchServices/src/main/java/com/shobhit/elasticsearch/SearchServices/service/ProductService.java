@@ -37,8 +37,6 @@ public class ProductService {
       throw new ProductNotFoundException("Product with ID " + id + " not found");
     }
 
-    log.info("ID ", id);
-
     return productRepository.findById(id).get();
 
   }
